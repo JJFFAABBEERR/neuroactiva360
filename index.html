@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroActiva 360 - Transforma tu Vida</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: floating 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #ffffff, #f0f0f0, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* Quick Access Buttons */
+        .quick-access {
+            margin: 4rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .quick-btn:hover::before {
+            left: 100%;
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .quick-btn i {
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .cta-main {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ffa726, #ff9800);
+            color: white;
+            padding: 20px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .cta-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-main:hover::before {
+            left: 100%;
+        }
+
+        .cta-main:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 120px 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 4rem;
+            color: white;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .course-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .course-card:hover::after {
+            opacity: 1;
+        }
+
+        .course-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+        }
+
+        .course-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+        }
+
+        .course-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .course-description {
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .course-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .course-features li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.05rem;
+        }
+
+        .course-features li i {
+            color: #4ade80;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .course-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #4ade80;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+        }
+
+        .select-course-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .select-course-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .select-course-btn:hover::before {
+            left: 100%;
+        }
+
+        .select-course-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .select-course-btn.selected {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            transform: scale(1.02);
+        }
+
+        /* Modal Improvements */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 255, 0.95));
+            margin: 3% auto;
+            padding: 3rem;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 700px;
+            position: relative;
+            animation: modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .close:hover {
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .register-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .register-btn:hover::before {
+            left: 100%;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(74, 222, 128, 0.4);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 120px 0;
+            background: rgba(0, 0, 0, 0.9);
+            position: relative;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            color: white;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .benefit-item i {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+        }
+
+        .benefit-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .benefit-item p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .quick-access {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .quick-btn {
+                width: 280px;
+                justify-content: center;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-card {
+                padding: 2rem;
+            }
+
+            .modal-content {
+                margin: 5% auto;
+                padding: 2rem;
+                width: 95%;
+            }
+        }
+
+        /* Success Animation */
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .success-animation {
+            animation: successPulse 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">🧠 NeuroActiva 360</div>
+            <ul class="nav-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#courses">Cursos</a></li>
+                <li><a href="#benefits">Beneficios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element">🧠</div>
+        <div class="floating-element">⚡</div>
+        <div class="floating-element">🌟</div>
+        
+        <div class="container hero-content">
+            <h1>✨ NeuroActiva 360</h1>
+            <p class="hero-subtitle">
+                Transforma tu vida con programas de aprendizaje que redefinen la manera de vivir el éxito. 
+                Equilibra tu bienestar físico, emocional y mental a través de métodos científicamente probados.
+            </p>
+            
+            <!-- Quick Access Buttons -->
+            <div class="quick-access">
+                <a href="#ralentizar" class="quick-btn" onclick="scrollToCourse('ralentizar')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Ralentizar-Nos
+                </a>
+                <a href="#armonia" class="quick-btn" onclick="scrollToCourse('armonia')">
+                    <i class="fas fa-yin-yang"></i>
+                    Mente & Cuerpo
+                </a>
+                <a href="#combo" class="quick-btn" onclick="scrollToCourse('combo')">
+                    <i class="fas fa-star"></i>
+                    Transformación Completa
+                </a>
+            </div>
+            
+            <a href="#courses" class="cta-main">
+                <i class="fas fa-rocket" style="margin-right: 10px;"></i>
+                Descubre Nuestros Cursos
+            </a>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="section-title">Nuestros Programas de Transformación</h2>
+            
+            <div class="courses-grid">
+                <!-- Course 1: Ralentizar-Nos -->
+                <div class="course-card" id="ralentizar" data-course="ralentizar">
+                    <div class="course-icon">🏎️✨</div>
+                    <h3 class="course-title">Programa Ralentizar-Nos</h3>
+                    <p class="course-description">
+                        ¿El mundo te lleva a ir a la velocidad del Ferrari? Aprende a equilibrar el bienestar físico, emocional y mental. 
+                        Suelta el control del hacer, sal del automático y asume el poder del SER, CREAR y ELEGIR.
+                    </p>
+                    <ul class="course-features">
+                        <li><i class="fas fa-clock"></i> 2 meses de duración intensiva</li>
+                        <li><i class="fas fa-video"></i> 16 clases grabadas premium</li>
+                        <li><i class="fas fa-users"></i> 16 clases en vivo colectivas</li>
+                        <li><i class="fas fa-user"></i> 4 sesiones individuales personalizadas</li>
+                        <li><i class="fas fa-brain"></i> Método basado en psicología clínica</li>
+                        <li><i class="fas fa-trophy"></i> Psicología deportiva de alto rendimiento</li>
+                        <li><i class="fas fa-atom"></i> Neuroquímica cerebral aplicada</li>
+                    </ul>
+                    <div class="course-price">$497</div>
+                    <button class="select-course-btn" onclick="selectCourse('ralentizar', 'Programa Ralentizar-Nos', 497)">
+                        <i class="fas fa-rocket"></i> Seleccionar Curso
+                    </button>
+                </div>
+
+                <!-- Course 2: Mente y Cuerpo en Armonía -->
+                <div class="course-card" id="armonia" data-course="armonia">
+                    <div class="course-icon">🧘‍♀️💫</div>
+                    <h3 class="course-title">Mente y Cuerpo en Armonía</h3>
+                    <p class="course-description">
+                        Programa de inmersión total donde experimentarás cambios reales a nivel físico y emocional. 
+                        Conecta con tu cuerpo desde la inteligencia sensorial y activa tu cerebro con la neuroquímica necesaria.
+                    </p>
+                    <ul class="course-features">
+                        <li><i class="fas fa-dive"></i> Inmersión total transformadora</li>
+                        <li><i class="fas fa-heartbeat"></i> Cambios físicos y emocionales reales</li>
+                        <li><i class="fas fa-hand-sparkles"></i> Desarrollo de inteligencia sensorial</li>
+                        <li><i class="fas fa-brain"></i> Activación cerebral optimizada</li>
+                        <li><i class="fas fa-leaf"></i> Regulación del sistema nervioso</li>
+                        <li><i class="fas fa-circle"></i> Enfoque holístico integral</li>
+                        <li><i class="fas fa-check-circle"></i> Resultados medibles garantizados</li>
+                    </ul>
+                    <div class="course-price">$397</div>
+                    <button class="select-course-btn" onclick="selectCourse('armonia', 'Mente y Cuerpo en Armonía', 397)">
+                        <i class="fas fa-heart"></i> Seleccionar Curso
+                    </button>
+                </div>
+
+                <!-- Course 3: Combo Completo -->
+                <div class="course-card" id="combo" data-course="combo">
+                    <div class="course-icon">⭐🚀</div>
+                    <h3 class="course-title">Transformación Completa</h3>
+                    <p class="course-description">
+                        La combinación perfecta de ambos programas para una transformación integral. 
+                        La opción más completa para redefinir tu vida y alcanzar tu máximo potencial con el mejor precio.
+                    </p>
+                    <ul class="course-features">
+                        <li><i class="fas fa-crown"></i> Programa Ralentizar-Nos completo</li>
+                        <li><i class="fas fa-gem"></i> Mente y Cuerpo en Armonía incluido</li>
+                        <li><i class="fas fa-plus-circle"></i> Sesiones adicionales de seguimiento</li>
+                        <li><i class="fas fa-gift"></i> Material exclusivo de apoyo premium</li>
+                        <li><i class="fas fa-vip"></i> Acceso prioritario a nuevos contenidos</li>
+                        <li><i class="fas fa-users-crown"></i> Comunidad VIP exclusiva</li>
+                        <li><i class="fas fa-shield-check"></i> Garantía de satisfacción total</li>
+                    </ul>
+                    <div class="course-price">$697 <span style="font-size: 1.2rem; text-decoration: line-through; color: rgba(255,255,255,0.6); margin-left: 10px;">$894</span></div>
+                    <button class="select-course-btn" onclick="selectCourse('combo', 'Transformación Completa', 697)">
+                        <i class="fas fa-star"></i> Seleccionar Curso VIP
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegir NeuroActiva 360?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>Neuroquímica Cerebral</h3>
+                    <p>Activa tu cerebro con la neuroquímica necesaria para regular tu sistema nervioso de manera efectiva y saludable.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Equilibrio Total</h3>
+                    <p>Aprende a equilibrar el bienestar físico, emocional y mental para un rendimiento óptimo sin caos.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Enfoque Científico</h3>
+                    <p>Basado en psicología clínica, psicología deportiva y neurociencia aplicada con resultados comprobados.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Acompañamiento Personal</h3>
+                    <p>Sesiones individuales y grupales para un seguimiento personalizado de tu progreso y transformación.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-lightning-bolt"></i>
+                    <h3>Resultados Rápidos</h3>
+                    <p>Metodología probada que genera cambios visibles y medibles desde las primeras semanas de aplicación.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Garantía Total</h3>
+                    <p>Respaldamos nuestros programas con garantía de satisfacción y resultados o te devolvemos tu inversión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #333; font-size: 2rem;">
+                🎯 Inscríbete en: <span id="selectedCourseName" style="color: #667eea;"></span>
+            </h2>
+            <p style="text-align: center; font-size: 1.3rem; color: #4ade80; font-weight: 700; margin-bottom: 2rem;">
+                Precio: $<span id="selectedCoursePrice"></span>
+            </p>
+            
+            <form id="registrationForm" onsubmit="submitRegistration(event)">
+                <div class="form-group">
+                    <label for="fullName"><i class="fas fa-user"></i> Nombre Completo *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Ingresa tu nombre completo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Teléfono *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+57 300 123 4567">
+                </div>
+                
+                <div class="form-group">
+                    <label for="country"><i class="fas fa-globe"></i> País</label>
+                    <select id="country" name="country">
+                        <option value="">Selecciona tu país</option>
+                        <option value="co">🇨🇴 Colombia</option>
+                        <option value="mx">🇲🇽 México</option>
+                        <option value="ar">🇦🇷 Argentina</option>
+                        <option value="pe">🇵🇪 Perú</option>
+                        <option value="ec">🇪🇨 Ecuador</option>
+                        <option value="cl">🇨🇱 Chile</option>
+                        <option value="ve">🇻🇪 Venezuela</option>
+                        <option value="us">🇺🇸 Estados Unidos</option>
+                        <option value="es">🇪🇸 España</option>
+                        <option value="other">🌍 Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="motivation"><i class="fas fa-lightbulb"></i> ¿Qué te motiva a tomar este curso?</label>
+                    <textarea id="motivation" name="motivation" rows="4" placeholder="Cuéntanos brevemente sobre tus objetivos y qué esperas lograr con este programa..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentMethod"><i class="fas fa-credit-card"></i> Método de Pago Preferido</label>
+                    <select id="paymentMethod" name="paymentMethod">
+                        <option value="credit">💳 Tarjeta de Crédito</option>
+                        <option value="debit">💳 Tarjeta de Débito</option>
+                        <option value="paypal">🏦 PayPal</option>
+                        <option value="transfer">🏧 Transferencia Bancaria</option>
+                        <option value="installments">📊 Pago en Cuotas</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="register-btn">
+                    <i class="fas fa-rocket"></i>
+                    Proceder al Pago - $<span id="finalPrice"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: #667eea; font-size: 1.8rem; margin-bottom: 1rem;">🧠 NeuroActiva 360</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Transforma tu vida • Equilibra tu mente • Alcanza tu potencial</p>
+                <div style="display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0;">
+                    <a href="#" style="color: #667eea; font-size: 1.5rem; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" style="color: #667eea; font-size: 1.5rem; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" style="color: #667eea; font-size: 1.5rem; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" style="color: #667eea; font-size: 1.5rem; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <p>&copy; 2024 NeuroActiva 360. Todos los derechos reservados.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                El alto rendimiento sin equilibrio solo te lleva al caos físico y mental
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        let selectedCourse = null;
+
+        function selectCourse(courseId, courseName, price) {
+            // Remove previous selections
+            document.querySelectorAll('.select-course-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.innerHTML = btn.innerHTML.replace('✓ Curso Seleccionado', btn.getAttribute('data-original') || btn.innerHTML);
+            });
+
+            // Mark current selection
+            const currentBtn = event.target;
+            if (!currentBtn.getAttribute('data-original')) {
+                currentBtn.setAttribute('data-original', currentBtn.innerHTML);
+            }
+            currentBtn.classList.add('selected');
+            currentBtn.innerHTML = '<i class="fas fa-check-circle"></i> ✓ Curso Seleccionado';
+            currentBtn.classList.add('success-animation');
+
+            // Store selection
+            selectedCourse = {
+                id: courseId,
+                name: courseName,
+                price: price
+            };
+
+            // Show registration modal with animation
+            document.getElementById('selectedCourseName').textContent = courseName;
+            document.getElementById('selectedCoursePrice').textContent = price;
+            document.getElementById('finalPrice').textContent = price;
+            document.getElementById('registrationModal').style.display = 'block';
+
+            // Add entrance animation
+            setTimeout(() => {
+                document.querySelector('.modal-content').style.animation = 'modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('registrationModal');
+            const modalContent = document.querySelector('.modal-content');
+            
+            // Add exit animation
+            modalContent.style.animation = 'modalSlideOut 0.3s ease-in forwards';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modalContent.style.animation = '';
+            }, 300);
+        }
+
+        // Add exit animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes modalSlideOut {
+                from {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateY(-50px) scale(0.9);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function submitRegistration(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const registrationData = {
+                course: selectedCourse,
+                student: {
+                    fullName: formData.get('fullName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    country: formData.get('country'),
+                    motivation: formData.get('motivation'),
+                    paymentMethod: formData.get('paymentMethod')
+                },
+                timestamp: new Date().toISOString()
+            };
+
+            // Simulate loading
+            const submitBtn = event.target.querySelector('.register-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+            submitBtn.disabled = true;
+
+            // Here you would typically send the data to your server
+            console.log('Registration Data:', registrationData);
+            
+            setTimeout(() => {
+                // Show success message with better UX
+                const successMessage = `
+                    🎉 ¡Excelente ${registrationData.student.fullName}!
+                    
+                    Tu inscripción para "${selectedCourse.name}" ha sido procesada exitosamente.
+                    
+                    📧 Recibirás un email de confirmación en los próximos minutos
+                    📱 Nuestro equipo te contactará dentro de las próximas 2 horas para proceder con el pago y darte acceso inmediato al curso
+                    
+                    ¡Prepárate para transformar tu vida! 🚀
+                `;
+                
+                alert(successMessage);
+                
+                // Reset form and UI
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                closeModal();
+                event.target.reset();
+                
+                // Reset course selection
+                document.querySelectorAll('.select-course-btn').forEach(btn => {
+                    btn.classList.remove('selected', 'success-animation');
+                    btn.innerHTML = btn.getAttribute('data-original') || btn.innerHTML;
+                });
+                selectedCourse = null;
+            }, 2000);
+        }
+
+        function scrollToCourse(courseId) {
+            const courseElement = document.getElementById(courseId);
+            if (courseElement) {
+                courseElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Add highlight effect
+                courseElement.style.transform = 'scale(1.05)';
+                courseElement.style.boxShadow = '0 30px 80px rgba(102, 126, 234, 0.5)';
+                
+                setTimeout(() => {
+                    courseElement.style.transform = '';
+                    courseElement.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('registrationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.borderBottom = '1px solid rgba(102, 126, 234, 0.3)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating-element');
+            
+            parallax.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe course cards and benefit items
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.course-card, .benefit-item');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
